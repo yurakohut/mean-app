@@ -7,12 +7,15 @@ const postsRoutes = require('./routes/posts')
 
 const app = express();
 
-mongoose.connect('mongodb+srv://yurakohut:29fqlnayZ6Oo2K5T@cluster0-mgcse.mongodb.net/node-angular?retryWrites=true&w=majority')
-  .then(() => {
-    console.log('Connected to database');
+mongoose.connect('mongodb+srv://yurakohut:29fqlnayZ6Oo2K5T@cluster0-mgcse.mongodb.net/node-angular?retryWrites=true&w=majority', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
   })
-  .catch(() => {
-    console.log('Connection failed');
+  .then(() => {
+    console.log('mongo connection created');
+  })
+  .catch(err => {
+    console.log('error creating db connection: ' + err);
   });
 
 app.use(bodyParser.json());
